@@ -1,31 +1,48 @@
-import React from "react";
+import React from 'react';
+import {
+  MDBContainer,
+  MDBNavbar,
+  MDBBtn,
+  MDBInputGroup
+} from 'mdb-react-ui-kit';
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            Employees Management
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+    <MDBNavbar dark bgColor='black'>
+    <MDBContainer fluid>
+      <MDBInputGroup tag="form" className='d-flex w-auto mb-3'>
+        {/* <input className='form-control' placeholder="Type query" aria-label="Search" type='Search' /> */}
+        {/* <MDBBtn outline>Search</MDBBtn> */}
 
-          <Link className="btn btn-outline-light" to="/add-employee">
-            Add User
+
+    
+      
+
+  
+
+          <div >
+          <Link  style={{ color: "white",  
+                       textAlign: "start", fontSize:"40px"}} to="/">
+            Employees Management Applications
           </Link>
-        </div>
-      </nav>
-    </div>
+                  
+          <Link style={{ color: "white",textAlign: "start", fontSize:"10px", marginTop:"20px", marginBottom:"14px", marginLeft:"966px"}} className="btn btn-outline-light" to="/add-employee">
+            Add Employee
+          </Link>
+          {/* <Link style={{ color: "white",textAlign: "start", fontSize:"10px", marginTop:"20px", marginBottom:"14px"}} className="btn btn-outline-light" to="/add-employee">
+            Search Employee
+          </Link> */}
+
+          </div>
+      
+
+
+
+
+      </MDBInputGroup>
+    </MDBContainer>
+  </MDBNavbar>
+
   );
 }

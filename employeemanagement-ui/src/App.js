@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddUser from "./Users/AddUser";
 import EditUser from "./Users/EditUser";
 import ViewUser from "./Users/ViewUser";
+import Footer from "./layout/footer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/view-employee/:id" element={<ViewUser />} />
           <Route exact path="/update-employee/:id" element={<EditUser />} />
         </Routes>
+
       </Router>
     </div>
   );
