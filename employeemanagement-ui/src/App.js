@@ -6,7 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddUser from "./Users/AddUser";
 import EditUser from "./Users/EditUser";
 import ViewUser from "./Users/ViewUser";
-import Footer from "./layout/footer";
+import Login from "./pages/Login";
+
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/add-employee/" element={<AddUser />} />
           <Route exact path="/view-employee/:id" element={<ViewUser />} />
           <Route exact path="/update-employee/:id" element={<EditUser />} />
+          <Route exact path="/login" element={<Login />} />
         </Routes>
 
       </Router>

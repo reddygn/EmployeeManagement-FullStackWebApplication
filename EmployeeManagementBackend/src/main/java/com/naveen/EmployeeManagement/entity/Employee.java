@@ -1,4 +1,4 @@
-package com.naveen.EmployeeManagement.model;
+package com.naveen.EmployeeManagement.entity;
 
 import javax.persistence.*;
 

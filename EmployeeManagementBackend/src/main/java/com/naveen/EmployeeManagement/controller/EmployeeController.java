@@ -1,6 +1,6 @@
 package com.naveen.EmployeeManagement.controller;
 
-import com.naveen.EmployeeManagement.model.Employee;
+import com.naveen.EmployeeManagement.entity.Employee;
 import com.naveen.EmployeeManagement.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,6 @@ public class EmployeeController {
     EmployeeService employeeService;
 
 
-    // updateEmployee
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")

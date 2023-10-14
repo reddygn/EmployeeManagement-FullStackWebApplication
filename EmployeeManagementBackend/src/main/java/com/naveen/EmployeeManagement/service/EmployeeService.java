@@ -1,7 +1,7 @@
 package com.naveen.EmployeeManagement.service;
 
 
-import com.naveen.EmployeeManagement.model.Employee;
+import com.naveen.EmployeeManagement.entity.Employee;
 import com.naveen.EmployeeManagement.repository.EmployeeRepo;
 
 import org.springframework.beans.BeanUtils;
