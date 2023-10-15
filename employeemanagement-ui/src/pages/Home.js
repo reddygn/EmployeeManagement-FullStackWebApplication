@@ -29,7 +29,7 @@ export default function Home() {
         <table className="table border shadow">
           <thead>
             <tr>
-            <th scope="col">EmployeeId</th>
+              <th scope="col">EmployeeId</th>
               <th scope="col">FirstName</th>
               <th scope="col">LastName</th>
               <th scope="col">Email</th>
