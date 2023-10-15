@@ -16,9 +16,9 @@ export default function Navbar() {
           <Link  style={{ color: "white", textAlign: "start", fontSize:"40px"}} to="/">
             Employees Management Application
           </Link>  
-          {/* <Link style={{ color: "white",textAlign: "start", fontSize:"10px", marginTop:"20px", marginBottom:"14px", marginLeft:"966px"}} className="btn btn-outline-light" to="/add-employee">
+          <Link style={{ color: "white",textAlign: "start", fontSize:"10px", marginTop:"20px", marginBottom:"14px", marginLeft:"966px"}} className="btn btn-outline-light" to="/add-employee">
             Add Employee
-          </Link> */}
+          </Link>
           </div>
       </MDBInputGroup>
     </MDBContainer>
