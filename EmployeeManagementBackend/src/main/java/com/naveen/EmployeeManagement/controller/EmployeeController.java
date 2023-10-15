@@ -13,49 +13,49 @@ import java.util.Map;
 @RequestMapping(value = "/api/employees")
 public class EmployeeController {
 
-    @Autowired
-    EmployeeService employeeService;
+	@Autowired
+	EmployeeService employeeService;
 
+	@CrossOrigin(origins = "http://localhost:3000")
+	@GetMapping("")
+	public List<Employee> getAllEmployees() {
 
+		return employeeService.getAllEmployees();
+	}
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("")
-    public List<Employee> getAllEmployees(){
+	@CrossOrigin(origins = "http://localhost:3000")
+	@GetMapping("/testdata")
+	public List<Employee> getAllEmployeesFromJsonFile() {
 
-        return employeeService.getAllEmployees();
-    }
+		return employeeService.getAllEmployeesFromJsonFile();
+	}
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
+	@CrossOrigin(origins = "http://localhost:3000")
+	@GetMapping("/{id}")
+	public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
 
-        return employeeService.getEmployeeById(id);
-    }
+		return employeeService.getEmployeeById(id);
+	}
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String, Boolean>> delEmployee(@PathVariable Long id){
+	@CrossOrigin(origins = "http://localhost:3000")
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Map<String, Boolean>> delEmployee(@PathVariable Long id) {
 
-        return employeeService.delEmployee(id);
-    }
+		return employeeService.delEmployee(id);
+	}
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("")
-    public Employee createEmployee(@RequestBody Employee employee){
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PostMapping("")
+	public Employee createEmployee(@RequestBody Employee employee) {
 
-        return employeeService.createEmployee(employee);
-    }
+		return employeeService.createEmployee(employee);
+	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PutMapping("/{id}")
+	public Employee updateEmployee(@RequestBody Employee employee, @PathVariable Long id) {
 
-
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/{id}")
-    public Employee updateEmployee(@RequestBody Employee employee, @PathVariable Long id){
-
-        return employeeService.updateEmployee(employee, id);
-    }
-
-
-
+		return employeeService.updateEmployee(employee, id);
+	}
 
 }
