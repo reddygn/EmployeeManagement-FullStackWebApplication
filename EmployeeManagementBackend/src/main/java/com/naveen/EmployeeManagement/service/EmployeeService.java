@@ -10,13 +10,14 @@ import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.naveen.EmployeeManagement.entity.Employee;
 import com.naveen.EmployeeManagement.repository.EmployeeRepo;
@@ -24,17 +25,21 @@ import com.naveen.EmployeeManagement.repository.EmployeeRepo;
 @Service
 public class EmployeeService {
 
+	private static final Logger logger = LoggerFactory.getLogger(EmployeeService.class);
+
 	@Autowired
 	EmployeeRepo employeeRepo;
 
 	public List<Employee> getAllEmployees() {
 
 		// fetch all the employees
-		// if no employees are present in the Db, fetching it from JSON file and adding
-		// them to employees table in the DB
+		// if no employees are present in the DB table, fetching it from JSON file
+		// also add the employees from json file to the table in the DB.
 
 		try {
 			if (employeeRepo.findAll().size() == 0) {
+
+				logger.info("Fetching Employees From the JSON File");
 
 				List<Employee> employees = getAllEmployeesFromJsonFile();
 
@@ -44,10 +49,13 @@ public class EmployeeService {
 
 				}
 
+				logger.info("Savings Employees Into The DB Is Done");
+
 				return getAllEmployeesFromJsonFile();
 			} else {
-				List<Employee> eres = employeeRepo.findAll();
-				System.out.println(eres.toString());
+
+				logger.info("Fetching Employees From the JSON File");
+
 				return employeeRepo.findAll();
 			}
 
