@@ -51,10 +51,10 @@ public class EmployeeService {
 
 				logger.info("Savings Employees Into The DB Is Done");
 
-				return getAllEmployeesFromJsonFile();
+				return employees;
 			} else {
 
-				logger.info("Fetching Employees From the JSON File");
+				logger.info("Fetching Employees From The Server / DB");
 
 				return employeeRepo.findAll();
 			}
@@ -89,8 +89,6 @@ public class EmployeeService {
 
 	public Employee createEmployee(Employee employee) {
 
-		employeeRepo.save(employee);
-
 		return employeeRepo.save(employee);
 
 	}
@@ -124,8 +122,6 @@ public class EmployeeService {
 
 			employees = mapper.readValue(productsJsonArray.toString(), new TypeReference<List<Employee>>() {
 			});
-
-//			mapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, false);
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
