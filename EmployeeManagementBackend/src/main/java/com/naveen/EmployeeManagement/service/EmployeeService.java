@@ -19,7 +19,9 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.naveen.EmployeeManagement.entity.Assets;
 import com.naveen.EmployeeManagement.entity.Employee;
+import com.naveen.EmployeeManagement.repository.AssetsRepo;
 import com.naveen.EmployeeManagement.repository.EmployeeRepo;
 
 @Service
@@ -29,6 +31,9 @@ public class EmployeeService {
 
 	@Autowired
 	EmployeeRepo employeeRepo;
+
+	@Autowired
+	AssetsRepo assetsRepo;
 
 	public List<Employee> getAllEmployees() {
 
@@ -77,6 +82,13 @@ public class EmployeeService {
 	public ResponseEntity<Map<String, Boolean>> delEmployee(Long id) {
 
 		Employee employee = employeeRepo.findById(id).orElseThrow(() -> new RuntimeException());
+		List<Assets> assets = assetsRepo.findAllByEmployeeId(employee.getId());
+
+		if (assets.size() > 0) {
+			for (Assets asset : assets) {
+				assetsRepo.delete(asset);
+			}
+		}
 
 		employeeRepo.delete(employee);
 
