@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [users, setUsers] = useState([]);
 
-  const { id } = useParams();
+
+  // const { id } = useParams();
 
   useEffect(() => {
     loadUsers();
@@ -13,7 +14,6 @@ export default function Home() {
 
   const loadUsers = async () => {
     const result = await axios.get("http://localhost:8081/api/employees");
-    console.log(result)
     setUsers(result.data);
   };
 
