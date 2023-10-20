@@ -1,18 +1,14 @@
 package com.naveen.EmployeeManagement.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -22,9 +18,6 @@ import com.naveen.EmployeeManagement.repository.AssetsRepo;
 
 @SpringBootTest
 public class AssetsServiceTests {
-
-	@Autowired
-	AssetsService assetsService;
 
 	@MockBean
 	AssetsRepo assetsRepo;
@@ -99,6 +92,28 @@ public class AssetsServiceTests {
 		Assets returnedAsset = assetsRepo.saveAndFlush(a);
 
 		assertEquals("ABC", returnedAsset.getAssetId());
+		assertEquals("QWERTY", returnedAsset.getAssetName());
+
+	}
+
+	@Test
+	public void testUpdateAsset() {
+
+		Assets a = new Assets();
+		a.setAssetName("QWERTY");
+
+		Assets a1 = new Assets();
+
+		a1.setAssetId("AAA");
+		a1.setAssetName("YTREWQ");
+		a1.setEmployeeId(1L);
+
+		a1.setAssetName(a.getAssetName());
+
+		Mockito.when(assetsRepo.saveAndFlush(a1)).thenReturn(a1);
+
+		Assets returnedAsset = assetsRepo.saveAndFlush(a1);
+
 		assertEquals("QWERTY", returnedAsset.getAssetName());
 
 	}
