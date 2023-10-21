@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -143,5 +145,26 @@ public class EmployeeService {
 			e.printStackTrace();
 		}
 		return employees;
+	}
+
+	@PostConstruct
+	public void loadDataOnStartUp() {
+
+		if (employeeRepo.findAll().size() == 0) {
+			logger.info("Adding employee from : postConstruct  :: ");
+
+			List<Employee> employees = getAllEmployeesFromJsonFile();
+
+			for (Employee employee : employees) {
+
+				employeeRepo.saveAndFlush(employee);
+
+			}
+
+		} else {
+			logger.info("No data added upon loadDataOnStartUp()  : postConstruct :: ");
+
+		}
+
 	}
 }
