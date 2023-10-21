@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.naveen.EmployeeManagement.entity.Assets;
-import com.naveen.EmployeeManagement.entity.Employee;
 import com.naveen.EmployeeManagement.service.AssetsService;
 
 @RestController
@@ -33,14 +32,13 @@ public class AssetsController {
 		return assetsService.getEmployeeAssets(id);
 	}
 
-	
 	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/{id}")
 	public ResponseEntity<Assets> getAssetById(@PathVariable Long id) {
 
 		return assetsService.getAssetById(id);
 	}
-	
+
 	@CrossOrigin(origins = "http://localhost:3000")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Map<String, Boolean>> delEmployee(@PathVariable Long id) {
