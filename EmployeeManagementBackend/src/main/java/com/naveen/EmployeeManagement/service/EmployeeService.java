@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -102,8 +103,27 @@ public class EmployeeService {
 	}
 
 	public Employee createEmployee(Employee employee) {
+//		Employee employeeResult = employeeRepo.findById(employee.getId()).orElseThrow(() -> new RuntimeException());
 
-		return employeeRepo.save(employee);
+		try {
+			Employee employeeResult = employeeRepo.findByEmailId(employee.getEmailId());
+
+			if (employeeResult == null || !employeeResult.getEmailId().equals(employee.getEmailId())) {
+				logger.info("Saving employee into DB");
+
+				employeeRepo.save(employee);
+
+			} else {
+
+				logger.error("Email alreday exists");
+
+				throw new RuntimeException();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 
 	}
 
@@ -113,6 +133,8 @@ public class EmployeeService {
 		BeanUtils.copyProperties(employee, employeeResult);
 
 		employeeRepo.saveAndFlush(employeeResult);
+
+		logger.info("Updating Employee into the DB");
 
 		return employeeResult;
 	}
